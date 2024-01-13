@@ -98,7 +98,7 @@
 #define to_world(message)                                   to_chat(world, message)
 #define sound_to(target, sound)                             to_target(target, sound)
 #define to_save(handle, value)                              to_target(handle, value) //semantics postport: what did they mean by this
-#define show_browser(target, browser_content, browser_name) to_target(target, browse(place_meta_charset(browser_content), browser_name))
+#define show_browser(target, browser_content, browser_name) to_target(target, browse(findtext_char(browser_content, "<html><head>")?replacetext_char(browser_content, "<html><head>", "<html><head><meta charset='utf-8'>"):findtext_char(browser_content, "<head>")?replacetext_char(browser_content, "<head>", "<head><meta charset='utd-8'>"):"<head><meta charset='utf-8'>[browser_content]", browser_name))
 #define send_rsc(target, content, title)                    to_target(target, browse_rsc(content, title))
 #define send_output(target, msg, control)                   to_target(target, output(msg, control))
 #define send_link(target, url)                              to_target(target, link(url))
